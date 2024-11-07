@@ -15,6 +15,7 @@ if __name__ == "__main__":
     parser.add_argument('--exp_name', type=str, help='Name of the sequence', default='P8_69_outdoor_cartwheel')
     parser.add_argument('-o', '--out_dir', type=str, help='Output directory', default='output')
     parser.add_argument('-D', '--display', help='Display the fitting process', action='store_true')
+    parser.add_argument('-F','--force', help='Force recompute the fits', action='store_true')
     
     args = parser.parse_args()
     
@@ -23,4 +24,4 @@ if __name__ == "__main__":
     
     smpl_data = pickle.load(open(smpl_pkl, 'rb'))
 
-    fit_osso(smpl_data, output_folder, display=args.display)
+    fit_osso(smpl_data, output_folder, display=args.display, force=args.force)

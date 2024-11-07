@@ -41,3 +41,8 @@ In blender, set your scene, load the script `render_meshes.py` and run it.
 ```sh
 python make_videos.py --exp_name P8_69_outdoor_cartwheel
 ```
+
+7. Copy the videos to dropbox
+```sh
+sh copy_dropbox.sh P8_69_outdoor_cartwheel
+```

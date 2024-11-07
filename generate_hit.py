@@ -107,7 +107,7 @@ def main():
         os.makedirs(os.path.join(out_folder, c_label), exist_ok=True)
         if c_label != 'NO':
             
-            if c_label != 'AT':
+            if c_label != 'BONE':
                 continue
             
             # Extract the shaped mesh

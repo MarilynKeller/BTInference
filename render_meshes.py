@@ -135,6 +135,13 @@ def render_meshes(mesh_mat, render_file):
         for my_obj in object_list:
             my_obj.select_set(True)
             bpy.ops.object.delete() 
+            
+        # Ensure mesh data is removed from memory
+#        if my_obj.type == 'MESH':
+#            # Remove the mesh data block if it exists
+#            mesh_data = my_obj.data
+#            if mesh_data:
+#                bpy.data.meshes.remove(mesh_data, do_unlink=True)
 
 def get_mesh_path(name, frame_i, exp_name, root):
     
@@ -165,37 +172,48 @@ if __name__ == "__main__":
     exp_name = 'P8_69_outdoor_cartwheel'
     
     queue = [
-             [('smpl', 'smpl_mat')],
-             [('skel_skel', 'bone_mat')], 
-             [('osso', 'bone_mat')],
-             [('at', 'at_mat')],
+#             [('smpl', 'smpl_mat')],
+#             [('skel_skel', 'bone_mat')], 
+#             [('osso', 'bone_mat')],
+              [('at', 'at_mat')],
+            #   [('at', 'at_mat'), ('lt', 'lt_trans_mat'), ('bone', 'bone_mat')],
             [('lt', 'lt_mat')],
-            [('skel_skel', 'bone_mat'), ('skel_skin', 'smpl_transp_mat')], 
-            [('osso', 'bone_mat'), ('smpl', 'smpl_transp_mat')], 
-            [('skel_skel', 'bone_mat'), ('smpl', 'smpl_wire')], 
+            # [('lt', 'lt_mat'),('bone', 'bone_mat')],
+           [('skel_skel', 'bone_mat'), ('skel_skin', 'skel_skin_mat')], 
+           [('osso', 'bone_mat'), ('smpl', 'smpl_trans_mat')], 
+#            [('skel_skel', 'bone_mat'), ('smpl', 'smpl_wire')], 
             #   [('lt', 'lt_mat'), ('bone', 'bone_mat'), ('smpl', 'smpl_wire')],
             #   [('lt', 'lt_mat'), ('skel_skel', 'bone_mat'),('smpl', 'smpl_wire')]
              ]
     
     debug = 0
+    min_frame = 0
     max_frame = 656
     skip_render = False
     skip_delete = False
+    force = 1
     
     if debug:
-        max_frame = 3
+        min_frame = 0
+        max_frame = 1
         skip_render = False
         skip_delete = False
+        force = 1
     
     for task in queue:
         task_name = '_'.join([t[0] for t in task])
         task_folder = os.path.join(output, exp_name, 'Render', task_name)
         os.makedirs(task_folder, exist_ok=True)
     
-        for frame in range(0,max_frame):
+        for frame in range(min_frame,max_frame):
+            
+            render_file = os.path.join(task_folder, f'frame_{frame:04d}.png')
+            if os.path.exists(render_file) and not force:
+                print(f'Frame {frame} for task {task_name} already rendered, force to re-render')
+                continue
     
             mesh_mat = [(get_mesh_path(name, frame, exp_name, output), mat) for name, mat in task]
-            render_file = os.path.join(task_folder, f'frame_{frame:04d}.png')
+
             try:
                 render_meshes(mesh_mat, render_file)
             except Exception as e:

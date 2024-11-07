@@ -33,6 +33,7 @@ if __name__ == "__main__":
     
     parser.add_argument('--exp_name', type=str, help='Name of the experiment', default='P8_69_outdoor_cartwheel')
     parser.add_argument('--fps', type=int, help='Fps of the sequence', default=30)
+    parser.add_argument('--folders', type=str, help='List of the folders to make a video from. If not specified, all the folders will be used', nargs='+')
     
     args = parser.parse_args()
     
@@ -43,15 +44,22 @@ if __name__ == "__main__":
     bg_video_path =  os.path.join('output', args.exp_name, 'video.mp4')
     
     # List all the subfolders of the render folder
-    im_folders = [f for f in os.listdir(render_folder) if os.path.isdir(os.path.join(render_folder, f))]
+    if args.folders is not None:
+        im_folders = args.folders
+    else:
+        im_folders = [f for f in os.listdir(render_folder) if os.path.isdir(os.path.join(render_folder, f))]
     
     # for bg in ['white', 'video']:
     # for bg in ['white']:
     # for bg in ['black']:
-    for bg in ['video']:
+    for bg in ['video', 'white']:
         os.makedirs(os.path.join(video_folder, bg+'_bg'), exist_ok=True)
         for folder in im_folders:
-            if folder != 'smpl':
+            # if folder != 'smpl':
+            #     continue
+            # If the folder has less than 10 images, skip it
+            files = os.listdir(os.path.join(render_folder, folder))
+            if len(files) < 10:
                 continue
             try: 
                 make_video(os.path.join(render_folder, folder), os.path.join(video_folder, bg+'_bg', f'{folder}.mp4'), 
