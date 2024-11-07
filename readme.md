@@ -1,11 +1,11 @@
 # BTInference - Bone and Tissue inference wrapper
 
-This repo contains wrapper code to run OSSO, SKEL and HIT fits on various data output, visualize and render the result.
+This repo contains wrapper code to run [OSSO](https://osso.is.tue.mpg.de/), [SKEL](https://skel.is.tue.mpg.de/) and [HIT](https://skel.is.tue.mpg.de/) fits on various [SMPL](https://smpl.is.tue.mpg.de/) data input, visualize and render the result.
 
 https://github.com/user-attachments/assets/88f022ea-5dcd-4df9-9c13-c2f1cce8df0a
 
-Sequence from the [EMDB dataset](https://eth-ait.github.io/emdb/) (P8_69_outdoor_cartwheel), input SMPL sequence and video, OSSO, SKEL and HIT fits superimposed to the video. The OSSO, SKEL and HIT fits and their rendering were generated with this repo.
-
+Sequence from the [EMDB dataset](https://eth-ait.github.io/emdb/) (P8_69_outdoor_cartwheel), from left to right: input SMPL sequence on video, OSSO, SKEL and HIT fits superimposed to the video. 
+The OSSO, SKEL and HIT fits and their rendering were generated with this repo.
 
 This repo has been tested on sequences from the [EMDB dataset](https://eth-ait.github.io/emdb/) and output from [EasyMocap](https://chingswy.github.io/easymocap-public-doc/) (video + SMPL sequence).
 [Easymocap](https://chingswy.github.io/easymocap-public-doc/) is an easy-to-use library that allows the extraction of SMPL sequences from any video from the internet. 
