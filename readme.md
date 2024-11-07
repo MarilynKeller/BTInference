@@ -62,7 +62,7 @@ python vis.py P8_69_outdoor_cartwheel --zd --smpl_meshes --skel_meshes
 
 5. Render the meshes with Blender (requires the [Blender](https://www.blender.org/) software installed)
 
-Open Blender from the terminal, set your scene, load the script `render_meshes.py`, edit it to point to the sequence you want to render, and run the script.
+Open the Blender software from the terminal, set your scene, load the script `render_meshes.py`, edit it to point to the sequence you want to render, and run the script.
 In case of an error, check the terminal for the error message.
 
 I did set up the scene manually for this specific example. I guess the scene could be made more generic through scripting for the compositing by loading the video and setting the proper camera pose and focal.
