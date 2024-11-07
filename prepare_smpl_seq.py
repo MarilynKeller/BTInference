@@ -7,12 +7,15 @@ import shutil
 import numpy as np
 import torch
 
+### Edit these paths to point to the EasyMocap and EMDB directories
 easymocap_root = '/home/mkeller2/data2/Code/SMPL_fit_video/EasyMocap/output'
 emdb_root = '/home/mkeller2/data2/Dropbox/MPI/TML/submission_video/EMDB'
 
 def load_from_emdb(gender, exp_name="P8_69_outdoor_cartwheel", root=emdb_root):
     print("Loading from EMDB")
     smpl_file = os.path.join(root, exp_name + "_params.npz")
+    assert os.path.exists(smpl_file), f"File {smpl_file} does not exist. Please make sure you set the correct path to the EMDB directory in this file's header."
+    
     smpl_data = np.load(smpl_file)
     """ ['body_pose', 'global_orient', 'betas', 'transl', 'gender']"""
     smpl_seq = {'poses': np.concatenate([smpl_data['global_orient'], smpl_data['body_pose']], axis=1), 
@@ -38,6 +41,7 @@ def cure_betas(betas_in):
 def load_from_easymocap(gender, exp_name="test5", root=easymocap_root):
     print("Loading from easymocap")
     smpl_data_folder = os.path.join(root, exp_name, "smpl")
+    assert os.path.exists(smpl_data_folder), f"Folder {smpl_data_folder} does not exist. Please make sure you set the correct path to the EasyMocap directory in this file's header."
     
     # This folder contains a json file for each frame of the sequence, make a loop to agregate them in a single dict
     #     [
