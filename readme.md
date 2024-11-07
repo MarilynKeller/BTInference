@@ -1,6 +1,6 @@
 # BTInference - Bone and Tissue inference wrapper
 
-This repo contains wrapper code to run OSSO, SKEL and HIT fits on various data output, visualize and render the result.
+This repo contains wrapper code to run [OSSO](https://osso.is.tue.mpg.de/), [SKEL](https://skel.is.tue.mpg.de/) and [HIT](https://skel.is.tue.mpg.de/) fits on various data output, visualize and render the result.
 
 https://github.com/user-attachments/assets/88f022ea-5dcd-4df9-9c13-c2f1cce8df0a
 
