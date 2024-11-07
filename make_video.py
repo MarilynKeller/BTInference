@@ -26,6 +26,27 @@ def make_video(render_folder, output_file, frame_rate, img_string='frame_%04d.pn
     os.system(cmd)
     print(f"Video saved to {output_file}.")
 
+def cat_video(file_list):
+    # Check if file_list has at least two videos
+    if len(file_list) < 2:
+        raise ValueError("Need at least two videos to concatenate")
+
+    # Get the directory of the first video in the list
+    output_dir = os.path.dirname(file_list[0])
+    output_path = os.path.join(output_dir, "concatenated.mp4")
+    
+    # Prepare ffmpeg input arguments
+    ffmpeg_inputs = []
+    for file in file_list:
+        ffmpeg_inputs.extend(["-i", file])
+
+    # Construct the filter_complex argument
+    filter_complex = f"hstack=inputs={len(file_list)}"
+    
+    # Build and run the ffmpeg command
+    cmd = ["ffmpeg", *ffmpeg_inputs, "-filter_complex", filter_complex, output_path]
+    os.system(cmd)
+    print(f"Concatenated video saved to {output_path}.")
 
 
 if __name__ == "__main__":
@@ -66,3 +87,13 @@ if __name__ == "__main__":
                            args.fps, bg=bg, bg_video_path=bg_video_path)
             except Exception as e:
                 print(f"Error rendering video for folder {folder}. {e}")
+                
+    if args.cat:
+        print("Concatenating videos from left to right")
+        # list all the videos in the folder 'video' background
+        bg_mode = 'video'
+        videos = []
+        for video_name in ['smpl', 'osso', 'skel_skel', 'lt']:
+            videos.append(os.path.join(video_folder, 'white_bg', f'{video_name}.mp4'))
+        cat_video(videos)
+                
