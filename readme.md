@@ -77,3 +77,44 @@ python make_videos.py --exp_name P8_69_outdoor_cartwheel
 ```sh
 sh copy_dropbox.sh P8_69_outdoor_cartwheel
 ```
+
+
+## Citation
+
+If you use this code, please consider citing the relevant papers:
+
+```
+@inproceedings{Keller:CVPR:2022,
+  title = {{OSSO}: Obtaining Skeletal Shape from Outside},
+  author = {Keller, Marilyn and Zuffi, Silvia and Black, Michael J. and Pujades, Sergi},
+  booktitle = {Proceedings IEEE/CVF Conf.~on Computer Vision and Pattern Recognition (CVPR)},
+  month = jun,
+  year = {2022},
+  month_numeric = {6}}
+```
+
+```
+@inproceedings{keller2023skel,
+  title = {From Skin to Skeleton: Towards Biomechanically Accurate 3D Digital Humans},
+  author = {Keller, Marilyn and Werling, Keenon and Shin, Soyong and Delp, Scott and 
+            Pujades, Sergi and Liu, C. Karen and Black, Michael J.},
+  booktitle = {ACM ToG, Proc.~SIGGRAPH Asia},
+  volume = {42},
+  number = {6},
+  month = dec,
+  year = {2023},
+}
+```
+
+```
+@inproceedings{keller2024hit,
+  title = {{HIT}: Estimating Internal Human Implicit Tissues from the Body Surface},
+  author = {Keller, Marilyn and Arora, Vaibhav and Dakri, Abdelmouttaleb and Chandhok, Shivam and Machann, J{\"u}rgen and Fritsche, Andreas and Black, Michael J. and Pujades, Sergi},
+  booktitle = {IEEE/CVF Conf.~on Computer Vision and Pattern Recognition (CVPR)},
+  pages = {3480--3490},
+  month = jun,
+  year = {2024},
+  month_numeric = {6}
+}
+```
+
